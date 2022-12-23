@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz</title>
+
+    <link rel="stylesheet" href="quiz.css" />
+  </head>
+  <body>
+    <h1>Quiz on US President</h1>
+    <div class="box">
+      <form action="#">
+        <div id="quiz"></div>
+        <button id="submit">Get Results</button>
+      </form>
+      <div id="results"></div>
+    </div>
+    <script src="quiz.js"></script>
+  </body>
+</html>
+//quiz.css file: -
+
+// css file
+
+body {
+  font-size: 20px;
+  font-family: sans-serif;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+}
+.box {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 10px;
+  padding: 15px;
+}
+
+.question {
+  font-weight: 600;
+}
+
+.answers {
+  margin-bottom: 50px;
+}
+
+button {
+  padding: 10px;
+  margin: 10px 0;
+  width: auto;
+  height: auto;
+  font-size: large;
+  cursor: pointer;
+  color: white;
+  border-radius: 4px;
+  border: none;
+  background-color: #6ea0ea;
+}
+button:hover {
+  border: 2px solid #a1c3fa;
+}
+quiz.js file: -
+
+// I made some changes in js file as results are not showing some times so please recheck the js file. ;)
+
+// javascript file
+"use strict";
+
+// question for quiz
+var questions = [
+  {
+    question: "Which President was unanimously elected from 1732- 1799?",
+    answers: {
+      a: "Thomas Jefferson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question:
+      "Who was the only President in US history to hold the job of a hangman?",
+    answers: {
+      a: "Abraham Lincoln.",
+      b: "George Washington.",
+      c: "Grover Cleveland.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the only tailor ever to be President?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "Thomas Jefferson.",
+      c: "Grover Cleveland.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "Which President never lived in the White House?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Which President never represented a political party?",
+    answers: {
+      a: "Abraham Lincoln.",
+      b: "George Washington.",
+      c: "Grover Cleveland.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Who was the first president to be inaugurated in Washington DC?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "Thomas Jefferson.",
+      c: "Grover Cleveland.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question:
+      "Who was the only President to be elected for two non-consecutive terms?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "Thomas Jefferson.",
+      c: "Grover Cleveland.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question:
+      "Name the first US President born in the United States, after the American Revolution.",
+    answers: {
+      a: "Dwight David Eisenhower.",
+      b: "Richard Nixon.",
+      c: "Martin Van Buren.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the first ever President to visit all 50 states?",
+    answers: {
+      a: "Dwight David Eisenhower.",
+      b: "Richard Nixon.",
+      c: "Martin Van Buren.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Who was the only President to resign?",
+    answers: {
+      a: "Dwight David Eisenhower.",
+      b: "Richard Nixon.",
+      c: "Martin Van Buren.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Which US President was also a licensed bartender?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question:
+      "Which four Vice Presidents were elected to President in the next consecutive term?",
+    answers: {
+      a: "John Adams, Thomas Jefferson, Martin Van Buren and George H. W. Bush",
+      b: "Abraham Lincoln., John Adams, Martin Van Buren and George H. W. Bush",
+      c: "John Adams, Thomas Jefferson, Martin Van Buren and Richard Nixon.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question:
+      "Name the only presidential candidate that was not a Mason in the 1860 election.",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the only President who was a lifelong bachelor?",
+    answers: {
+      a: "James Madison.",
+      b: "James Buchanan.",
+      c: "Thomas Jefferson.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Who wrote 'The Life and Morals Of Jesus Of Nazareth'?",
+    answers: {
+      a: "James Madison.",
+      b: "James Buchanan.",
+      c: "Thomas Jefferson.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the lightest President of the United States?",
+    answers: {
+      a: "James Madison.",
+      b: "James Buchanan.",
+      c: "Thomas Jefferson.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question:
+      "Who made the shortest inauguration speech on record, at 133 words and less than two minutes long?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question:
+      "Which former United States President holds the record for the longest inauguration speech in history, at 8,578 words long?",
+    answers: {
+      a: "Leslie Lynch King Jr.",
+      b: "Theodore Roosevelt.",
+      c: "William Henry Harrison.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Which President held the shortest Presidency on record?",
+    answers: {
+      a: "Leslie Lynch King Jr.",
+      b: "Theodore Roosevelt.",
+      c: "William Henry Harrison.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "What was Gerald Rudolph Ford's name before he was adopted?",
+    answers: {
+      a: "Leslie Lynch King Jr.",
+      b: "Theodore Roosevelt.",
+      c: "William Henry Harrison.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "Who became the youngest President at age 42?",
+    answers: {
+      a: "Leslie Lynch King Jr.",
+      b: "Theodore Roosevelt.",
+      c: "William Henry Harrison.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Which three presidents died on 4 July?",
+    answers: {
+      a:
+        "William Henry Harrison (1826), John Adams (1826) and James Monroe (1831).",
+      b: "Theodore Roosevelt(1831), John Adams (1826) and James Monroe (1831).",
+      c: "Thomas Jefferson (1826), John Adams (1826) and James Monroe (1831).",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "What does H and W stand for in George H. W. Bush?",
+    answers: {
+      a: "George Herbert Walker Bush.",
+      b: "George Hash Walker Bush.",
+      c: "George Harrison Walker Bush.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question:
+      "Who was the first President to ever be photographed at his inauguration?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the heaviest US President?",
+    answers: {
+      a: "Harry Truman.",
+      b: "William Howard Taft.",
+      c: "James Monroe.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question:
+      "Who was the only 20th century President without a college degree?",
+    answers: {
+      a: "Harry Truman.",
+      b: "William Howard Taft.",
+      c: "James Monroe.",
+    },
+    correctAnswer: "a",
+  },
+  {
+    question: "The capital of Liberia is named after which President?",
+    answers: {
+      a: "Harry Truman.",
+      b: "William Howard Taft.",
+      c: "James Monroe.",
+    },
+    correctAnswer: "c",
+  },
+  {
+    question: "Who was the first Southerner elected to the Presidency?",
+    answers: {
+      a: "Harry Truman.",
+      b: "President Jimmy Carter.",
+      c: "James Monroe.",
+    },
+    correctAnswer: "b",
+  },
+  {
+    question: "Who was the tallest President?",
+    answers: {
+      a: "Andrew Johnson.",
+      b: "George Washington.",
+      c: "Abraham Lincoln.",
+    },
+    correctAnswer: "c",
+  },
+];
+
+function generateQuiz(
+  questions,
+  quizContainer,
+  resultsContainer,
+  submitButton
+) {
+  function generateRandomNum(max) {
+    return Math.floor(Math.random() * max) + 1;
+  }
+
+  function getRandomQuestion() {
+    return generateRandomNum(30);
+  }
+
+  var random = [];
+  for (let i = 0; i < 5; i++) {
+    random[i] = getRandomQuestion();
+  }
+
+  function showQuestions(questions, quizContainer) {
+    // we'll need a place to store the output and the answer choices
+    var output = [];
+    var answers;
+
+    // for each question...
+    for (var i = 0; i < 5; i++) {
+      // first reset the list of answers
+      answers = [];
+
+      // for each available answer to this question...
+      for (var letter in questions[random[i]].answers) {
+        // ...add an html radio button
+        answers.push(
+          "<label>" +
+            '<input type="radio" name="question' +
+            i +
+            '" value="' +
+            letter +
+            '">' +
+            letter +
+            ").  " +
+            questions[random[i]].answers[letter] +
+            "</label> </br>"
+        );
+      }
+
+      // add this question and its answers to the output
+      output.push(
+        '<div class="question">' +
+          questions[random[i]].question +
+          "</div>" +
+          '<div class="answers">' +
+          answers.join("") +
+          "</div>"
+      );
+    }
+
+    // finally combine our output list into one string of html and put it on the page
+    quizContainer.innerHTML = output.join("");
+  }
+
+  showQuestions(questions, quizContainer);
+
+  console.log(random);
+
+  function showResults(questions, quizContainer, resultsContainer) {
+    // gather answer containers from our quiz
+    var answerContainers = quizContainer.querySelectorAll(".answers");
+
+    // keep track of user's answers
+    var userAnswer = "";
+    var numCorrect = 0;
+
+    // for each question...
+    for (var i = 0; i < 5; i++) {
+      // find selected answer
+      userAnswer = (
+        answerContainers[i].querySelector(
+          "input[name=question" + i + "]:checked"
+        ) || {}
+      ).value;
+
+      // if answer is correct
+      if (userAnswer === questions[random[i]].correctAnswer) {
+        // add to the number of correct answers
+        numCorrect++;
+
+        // color the answers green
+        answerContainers[i].style.color = "lightgreen";
+      }
+      // if answer is wrong or blank
+      else {
+        // color the answers red
+        answerContainers[i].style.color = "red";
+      }
+    }
+
+    // show number of correct answers out of total
+    resultsContainer.innerHTML =
+      "Result: </br> Correct Ans: " + numCorrect + " out of 5.";
+  }
+
+  // on submit, show results
+  submitButton.onclick = function (event) {
+    showResults(questions, quizContainer, resultsContainer);
+    event.preventDefault();
+  };
+}
+
+var quizContainer = document.getElementById("quiz");
+var resultsContainer = document.getElementById("results");
+var submitButton = document.getElementById("submit");
+
+generateQuiz(questions, quizContainer, resultsContainer, submitButton);
